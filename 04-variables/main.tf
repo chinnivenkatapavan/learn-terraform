@@ -63,8 +63,18 @@ output "o4"{
 
 # So far we are handcording the value in variables, most times those come as input
 
+#values from terraform.tfvars, Terraform picks this file automatically, other tfvars needs to be parsed
 variable "v10"{
     output "o10"{
         value = var.v10
         }
     }
+
+#we can also access values from other tfvars too, but we need to parse that input
+# ex: dev.tfvars
+variable "env"{
+    output "env"{
+        value =var.env
+        }
+    }
+# Terraform can pick the file automatically if the files are *.auto.tfvars
