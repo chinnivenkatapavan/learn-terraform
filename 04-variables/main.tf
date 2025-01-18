@@ -42,11 +42,29 @@ variable "v3" {
 # 3. map (A key having again keys and values)
 
 ## Access your variable
-output "v1" {
+output "o1" {
     value = var.v1
     }
 
 # While accessing variable, if we have some string combination then we can access it with ${}
-output "v2" {
+output "o2" {
     value = "${var.v1} - John"
+    }
+
+# Access a value of list
+output "o3"{
+    value = var.v2[0]
+    }
+
+# Access a value of map
+output "o4"{
+    value = var.v3["Cloud"]
+    }
+
+# So far we are handcording the value in variables, most times those come as input
+
+variable "v10"{
+    output "o10"{
+        value = var.v10
+        }
     }
