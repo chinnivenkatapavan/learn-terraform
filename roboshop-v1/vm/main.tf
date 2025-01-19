@@ -38,10 +38,7 @@ resource "azurerm_virtual_machine" "main" {
   # delete_data_disks_on_termination = true
 
   storage_image_reference {
-    publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-jammy"
-    sku       = "22_04-lts"
-    version   = "latest"
+    id = "/subscriptions/7b6c642c-6e46-418f-b715-e01b2f871413/resourceGroups/trail1/providers/Microsoft.Compute/galleries/LDOTrail/images/rhel9-devops-practice/versions/04.12.2024"
   }
   storage_os_disk {
     name              = var.component
@@ -59,5 +56,26 @@ resource "azurerm_virtual_machine" "main" {
   }
   tags = {
     component = var.component
+  }
+}
+
+resource "null_resource" "ansible" {
+
+  depends_on = [azurerm_virtual_machine.main]
+
+  provisioner "remote-exec" {
+
+    connection {
+      type     = "ssh"
+      user     = "testadmin"
+      password = "Password1234!"
+      host     = azurerm_public_ip.main.ip_address
+    }
+
+    inline = [
+      "sudo dnf install python3.12-pip -y",
+      "sudo pip3.12 install ansible",
+      "ansible-pull -i localhost, -U https://github.com/raghudevopsb82/roboshop-ansible roboshop.yml -e app_name=${var.component} -e ENV=dev"
+    ]
   }
 }
