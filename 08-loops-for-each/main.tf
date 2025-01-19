@@ -14,6 +14,7 @@ variable "demo" {
             content = "Nested Mapping for organe"
             }
         BANANA = {
-            content = "Nested Mapping for APPLE"
+            content = "Nested Mapping for banana"
             }
+        }
     }
