@@ -10,5 +10,5 @@ terraform {
 }
 
 output "test" {
-    tests = "hello"
+    value = "hello"
     }
