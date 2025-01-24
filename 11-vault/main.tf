@@ -14,3 +14,8 @@ variable "token" {}
 data "vault_kv_secret" "secret_data" {
   path = "test/data/demo-ssh"
 }
+
+resource "local_file" "local" {
+    filename = "/tmp/pass"
+    content  = data.vault_kv_secret.secret_data
+    }
