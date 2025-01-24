@@ -5,7 +5,7 @@ provider "vault" {
   #
   # This will default to using $VAULT_ADDR
   # But can be set explicitly
-   address = "https://vault.azdevops2704.online:8200"
+   address = "http://vault.azdevops2704.online:8200"
    token   = var.token
 }
 
