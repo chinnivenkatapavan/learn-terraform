@@ -78,3 +78,10 @@ variable "env"{
         }
     }
 # Terraform can pick the file automatically if the files are *.auto.tfvars
+
+
+# Terraform Variable Precedence
+# 1. Coomand Line
+# 2. .tfvars
+# 3. var.tf
+# 4. local variable
